@@ -7,5 +7,6 @@ I hereby give permission that the information presented here in my Guru-Readme(t
 
 The list of PCBs I currently have is available on my website at the following link....
 http://members.iinet.net.au/~lantra9jp1_nbn/gurudumps/forsale/
+
 Almost all of them are for sale.....
 
