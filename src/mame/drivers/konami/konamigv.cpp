@@ -30,7 +30,8 @@ simpbowl   Simpsons Bowling                                         GV999       
 Notes:
 
 In MAME someone byte-swapped all of the the EEPROM files (located at 25C) and they do not work on real hardware. If you are
-programming the EEPROM dump to a real chip you must byte-swap the dump otherwise it will not work on your PCB.
+programming the EEPROM dump to a real chip you must byte-swap the dump otherwise it will not work on your PCB. This note
+will be removed when someone fixes the problem.
 
 The Tokimeki Memorial Oshiete Your Heart games use an extra PCB plugged in on top for controlling the printer and the sensors.
 Additionally, there is a small PCB for connecting to a sensor... PCB number GE755-PWB(S)
