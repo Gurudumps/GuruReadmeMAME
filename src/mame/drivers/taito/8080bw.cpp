@@ -70,8 +70,8 @@ Notes: (All IC's shown)
 
 Cosmo, TDS & Mints, 1979/80?
 Hardware info by Guru
-Last updated: No changes
-------------------------
+Last updated: 20th April 2021
+-----------------------------
 
 Notes:
 This game runs on modified "original" Taito (3 board) Space Invaders hardware.
