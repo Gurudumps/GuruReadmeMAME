@@ -4,7 +4,7 @@ Hardware Info by Guru
 Last Updated 20th April 2021
 ----------------------------
 
-Konami GV uses a single custom PCB but some of the custom chips are the same or simular to those used in a Playstation 1.
+Konami GV uses a single custom PCB but some of the custom chips are the same or similar to those used in a Playstation 1.
 
 
 Known Games
