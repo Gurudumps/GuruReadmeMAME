@@ -105,7 +105,7 @@ Notes:
             CN6 - DIN96 joining connector to lower PCB
             CN7 - Multi-pin connector (pads only, not used)
     CN9 to CN13 - Power Connectors
-       CN14 to CN17 - RCA Stereo Audio OUT
+   CN14 to CN17 - RCA Stereo Audio OUT
            CN18 - RCA Mono Audio OUT
            CN19 - USB Connector
 
@@ -135,13 +135,13 @@ MADE IN JAPAN
 |         CN1            |
 |------------------------|
 Notes:
-      CN1      - Connector joining to CPU board CN4
-      CN2/3    - RCA jacks for network cable
+           CN1 - Connector joining to CPU board CN4
+         CN2/3 - RCA jacks for network cable
       HYC2485S - Hybrid ceramic module for RS485
-      CY7C199  - 32k x8 SRAM
-      XC5204   - Xilinx XC5204 FPGA
-      XC5210   - Xilink XC5210 FPGA
-      N676H1   - PALCE16V8Q-15 stamped 'N676H1'
+       CY7C199 - 32k x8 SRAM
+        XC5204 - Xilinx XC5204 FPGA
+        XC5210 - Xilink XC5210 FPGA
+        N676H1 - PALCE16V8Q-15 stamped 'N676H1'
 
 Network PCB (Racing Jam 2 and Thrill Drive)
 -----------
@@ -158,7 +158,7 @@ MADE IN JAPAN
 |         CN1            |
 |------------------------|
 Notes:
-      This PCB is the same as the A version but with one added chip.
+      This PCB is the same as revision A with one chip added.
       2G - XICOR X76F041 Secure SerialFlash (SOIC8)
 
       Note: This chip is also present on *some* Hornet games on the GN715 CPU board at location
@@ -171,7 +171,7 @@ Notes:
       "hardware error" message. However, because the serialflash sets the data in the NVRAM there
       won't be any errors. It is unclear what happens when the NVRAM battery dies whether the NVRAM
       data is refreshed again. On Hornet games that have this chip, they will work even with a dead
-      NVRAM because the data is refreshed by the chip automatically.
+      NVRAM because the data is refreshed by the chip automatically at power-on.
 
 Bottom Board (VIDEO PCB)
 GN676 PWB(B)B
