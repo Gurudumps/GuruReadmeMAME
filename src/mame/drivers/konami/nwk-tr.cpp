@@ -2,8 +2,8 @@
 
 Konami 'NWK-TR' Hardware, Konami, 1998-1999
 Hardware info by Guru
-Last updated: No changes
-------------------------
+Last updated: 21st April 2021
+-----------------------------
 
 Known games on this hardware include....
 
@@ -66,7 +66,7 @@ Notes:
       DRM1M4SJ8 - Fujitsu 81C4256 256kx4 DRAM (SOJ24)
        SRAM256K - Cypress CY7C199 32kx8 SRAM (SOJ28)
       DRAM16X16 - Fujitsu 8118160A-60 16megx16 DRAM (SOJ42)
-      M48T58Y-70PC1 - ST Timekeeper RAM
+  M48T58Y-70PC1 - ST Timekeeper RAM
         RF5C400 - Ricoh RF5C400 PCM 32Ch, 44.1 kHz Stereo, 3D Effect Spatializer, clock input 16.9344MHz
          056800 - Konami Custom (QFP80)
          058232 - Konami Custom Ceramic Package (SIL14)
@@ -120,7 +120,7 @@ Racing Jam 2 888A01  -    -     888A09  888A10  -       -       676A04  676A05  
 Thrill Drive 713BE01 -    -     713A09  713A10  -       -       713A04  713A05  -       -   713A08
 
 
-Network PCB (Racing Jam)
+Network PCB (Racing Jam 2 and Thrill Drive)
 -----------
 GN676-PWB(H)A
 MADE IN JAPAN
@@ -157,17 +157,21 @@ MADE IN JAPAN
 |CN2                     |
 |         CN1            |
 |------------------------|
-This pcb is the same as the A version but with one added chip:
-      2G       - XICOR X76F041 Secure SerialFlash (SOIC8)
+Notes:
+      This PCB is the same as the A version but with one added chip.
+      2G - XICOR X76F041 Secure SerialFlash (SOIC8)
 
-                 Note: This chip is also present on *some* Hornet games on the GN715 CPU board at location
-                 30C. The chip refreshes game and region specific serial data to the Timekeeper RAM if the
-                 region ID matches the timekeeper. Because Racing Jam 2 and Thrill Drive came in a conversion
-                 kit for Racing Jam, the two former games will first boot with a "backup data error" because
-                 of the timekeeper used for the incorrect game. Pressing the test switch then sets the
-                 timekeeper back to factory settings for the new kitted game installed. If the region ID in
-                 serialflash and timekeeper do not match, the game boots with a "hardware error" message.
-
+      Note: This chip is also present on *some* Hornet games on the GN715 CPU board at location
+      30C. The chip refreshes game and region specific serial data to the Timekeeper RAM if the
+      region ID matches the timekeeper. Because Racing Jam 2 and Thrill Drive came in a conversion
+      kit for Racing Jam, the two former games will first boot with a "backup data error" because
+      of the timekeeper used for the incorrect game. Pressing the test switch then sets the
+      timekeeper back to factory settings for the new kitted game installed. 
+      If the region ID in serialflash and timekeeper do not match, the game boots with a 
+      "hardware error" message. However, because the serialflash sets the data in the NVRAM there
+      won't be any errors. It is unclear what happens when the NVRAM battery dies whether the NVRAM
+      data is refreshed again. On Hornet games that have this chip, they will work even with a dead
+      NVRAM because the data is refreshed by the chip automatically.
 
 Bottom Board (VIDEO PCB)
 GN676 PWB(B)B
@@ -203,29 +207,29 @@ GN676 PWB(B)B
 |         256KSRAM 256KSRAM              JP2   CN1                   PAL2                   |
 |-------------------------------------------------------------------------------------------|
 Notes:
-      4M_EDO - Silicon Magic SM81C256K16CJ-35 EDO DRAM 66MHz (SOJ40)
-      1MSRAM - Cypress CY7C109-25VC 1Meg SRAM (SOJ32)
-    256KSRAM - Winbond W24257AJ-15 256k SRAM (SOJ28)
-     TEXELFX - 3DFX 500-0004-02 BD0665.1 TMU (QFP208)
-     PIXELFX - 3DFX 500-0003-03 F001701.1 FBI (QFP240)
-      001604 - Konami Custom (QFP208)
-       MC44200FT - Motorola MC44200FT 3 Channel Video D/A Converter (QFP44)
-     MACH111 - AMD MACH111 CPLD (Stamped '03161A', PLCC44)
-    PLCC44_SOCKET - empty PLCC44 socket
-      AV9170 - Integrated Circuit Systems Inc. Clock Multiplier (SOIC8)
-      AM7201 - AMD AM7201 FIFO (PLCC32)
-        PAL1 - AMD PALCE16V8 (stamped 'N676B4', DIP20)
-        PAL2 - AMD PALCE16V8 (stamped 'N676B5', DIP20)
-        PAL3 - AMD PALCE16V8 (stamped 'N676B2', DIP20)
-         JP1 - SLV O O-O MST,TWN (sets board to MASTER TWIN or SLAVE)
-         JP2 - SLV O O-O MST (sets board to MASTER or SLAVE)
-         CN1 - 96 Pin joining connector to upper PCB
-         CN2 - 8-Pin 24kHz RGB OUT
-         CN3 - 15-Pin DSUB VGA Video MAIN OUT
-         CN4 - 6-Pin Power Connector
-         CN5 - 4-Pin Power Connector
-         CN6 - 2-Pin Connector (Not Used)
-         CN7 - 6-Pin Connector
+       4M_EDO - Silicon Magic SM81C256K16CJ-35 EDO DRAM 66MHz (SOJ40)
+       1MSRAM - Cypress CY7C109-25VC 1Meg SRAM (SOJ32)
+     256KSRAM - Winbond W24257AJ-15 256k SRAM (SOJ28)
+      TEXELFX - 3DFX 500-0004-02 BD0665.1 TMU (QFP208)
+      PIXELFX - 3DFX 500-0003-03 F001701.1 FBI (QFP240)
+       001604 - Konami Custom (QFP208)
+    MC44200FT - Motorola MC44200FT 3 Channel Video D/A Converter (QFP44)
+      MACH111 - AMD MACH111 CPLD (Stamped '03161A', PLCC44)
+PLCC44_SOCKET - empty PLCC44 socket
+       AV9170 - Integrated Circuit Systems Inc. Clock Multiplier (SOIC8)
+       AM7201 - AMD AM7201 FIFO (PLCC32)
+         PAL1 - AMD PALCE16V8 (stamped 'N676B4', DIP20)
+         PAL2 - AMD PALCE16V8 (stamped 'N676B5', DIP20)
+         PAL3 - AMD PALCE16V8 (stamped 'N676B2', DIP20)
+          JP1 - SLV O O-O MST,TWN (sets board to MASTER TWIN or SLAVE)
+          JP2 - SLV O O-O MST (sets board to MASTER or SLAVE)
+          CN1 - 96 Pin joining connector to upper PCB
+          CN2 - 8-Pin 24kHz RGB OUT
+          CN3 - 15-Pin DSUB VGA Video MAIN OUT
+          CN4 - 6-Pin Power Connector
+          CN5 - 4-Pin Power Connector
+          CN6 - 2-Pin Connector (Not Used)
+          CN7 - 6-Pin Connector
 
 
 ROM Usage
