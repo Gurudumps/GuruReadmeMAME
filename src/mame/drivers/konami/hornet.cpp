@@ -223,7 +223,7 @@ Game         24U     24V     32U     32V
 Gradius 4    837A13  837A15  837A14  837A16
 NBA P/Play   778A13  778A15  778A14  778A16
 Teraburst    715A13  715A15  778A14  715A16
-Thrill Drive -       713A13  -       713A14
+Thrill Drive 713A13  -       713A14  -
 S/Scope      830A13  -       830A14  -
 S/Scope 2    -       -       -       -      (no ROMs, not used)
 
