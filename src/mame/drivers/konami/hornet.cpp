@@ -2,8 +2,8 @@
 
 Konami 'Hornet' Hardware, Konami, 1997-2000
 Hardware info by Guru
-Last updated: No changes
-------------------------
+Last updated: 22nd April 2021
+-----------------------------
 
 Known games on this hardware include....
 
@@ -12,6 +12,7 @@ Game                             (C)      Year
 Gradius 4 : Fukkatsu             Konami   1998
 NBA Play by Play                 Konami   1998
 Teraburst                        Konami   1998
+Thrill Drive                     Konami   1999
 Silent Scope                     Konami   1999
 Silent Scope 2                   Konami   2000
 
@@ -50,6 +51,7 @@ Game              KONAMI ID  CPU PCB    GFX Board(s)  notes
 Gradius 4         GX837      GN715(A)   GN715(B)
 NBA Play By Play  GX778      GN715(A)   GN715(B)
 Teraburst         GX715      GN715(A)   GN715(B)      GN680(E) I/O board
+Thrill Drive      GE713UF    GN715(A)   GN715(B)      GN676-PWB(H)A LAN PCB
 Silent Scope      GQ830      GN715(A)   2x GN715(B)
 Silent Scope 2    GQ931      GN715(A)   2x GQ871(B)   GQ931(H) LAN PCB
 
@@ -147,6 +149,7 @@ Game         27P     25P     22P     16P     14P     12P     9P      16T     14T
 Gradius 4    837C01  -       -       837A09  837A10  -       778A12  837A04  837A05  -    -   837A08
 NBA P/Play   778A01  -       -       778A09  778A10  778A11  778A12  778A04  778A05  -    -   778A08
 Teraburst    -       715l02  715l03  715A09  715A10  -       778A12  715A04  715A05  -    -   715A08
+Thrill Drive 713AB01 -       -       713A09  713A10  -       -       713A04  713A05  -    -   713A08
 S/Scope      830B01  -       -       830A09  830A10  -       -       -       -       -    -   830A08
 S/Scope 2    931D01  -       -       931A09  931A10  931A11  -       931A04  -       -    -   931A08
 
@@ -220,6 +223,7 @@ Game         24U     24V     32U     32V
 Gradius 4    837A13  837A15  837A14  837A16
 NBA P/Play   778A13  778A15  778A14  778A16
 Teraburst    715A13  715A15  778A14  715A16
+Thrill Drive -       713A13  -       713A14
 S/Scope      830A13  -       830A14  -
 S/Scope 2    -       -       -       -      (no ROMs, not used)
 
