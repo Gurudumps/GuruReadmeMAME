@@ -5,6 +5,9 @@ Hardware info by Guru
 Last updated: 6th May 2021
 --------------------------
 
+Type without Xicor X76F041 IC
+-----------------------------
+
 This PCB is used on the following games:
 Racing Jam 
 Thrill Drive (NWK-LC)
@@ -30,7 +33,10 @@ Notes:
       XC5210   - Xilink XC5210 FPGA
       N676H1   - PALCE16V8Q-15 stamped 'N676H1'
 
-        
+
+Type with Xicor X76F041 IC
+--------------------------
+
 This PCB is used on the following games:
 Racing Jam 2
 Thrill Drive (NWK-TR)
