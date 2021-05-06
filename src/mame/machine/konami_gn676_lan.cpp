@@ -1,3 +1,5 @@
+/***************************************************************************
+
 Konami Network PCB for NWK hardware
 Hardware info by Guru
 Last updated: 6th May 2021
@@ -60,3 +62,5 @@ This pcb is the same as the A version but with one added chip:
                  that do not use this network board, the Timekeeper data will be automatically refreshed by 
                  the serialflash chip on the mainboard, if one is present. If one is not present the result 
                  will be error RTC BAD then a PCB reset.
+                 
+***************************************************************************/
