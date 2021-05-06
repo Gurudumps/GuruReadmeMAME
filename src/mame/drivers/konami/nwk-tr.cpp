@@ -127,7 +127,7 @@ Type without Xicor X76F041 IC
 -----------------------------
 This PCB is used on the following games:
 Racing Jam 
-Thrill Drive (NWK-LC & NWK-TR)
+Thrill Drive (NWK-LC & NWK-TR). Check hornet.cpp for specific NWK-LC info.
   
 GN676-PWB(H)A
 MADE IN JAPAN
