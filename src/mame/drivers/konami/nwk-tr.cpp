@@ -2,8 +2,8 @@
 
 Konami 'NWK-TR' Hardware, Konami, 1998-1999
 Hardware info by Guru
-Last updated: 21st April 2021
------------------------------
+Last updated: 6th May 2021
+--------------------------
 
 Known games on this hardware include....
 
@@ -120,8 +120,15 @@ Racing Jam 2 888A01  -    -     888A09  888A10  -       -       676A04  676A05  
 Thrill Drive 713BE01 -    -     713A09  713A10  -       -       713A04  713A05  -       -   713A08
 
 
-Network PCB (Racing Jam 2 and Thrill Drive)
------------
+Konami Network PCB for NWK hardware
+-----------------------------------
+
+Type without Xicor X76F041 IC
+-----------------------------
+This PCB is used on the following games:
+Racing Jam 
+Thrill Drive (NWK-LC & NWK-TR)
+  
 GN676-PWB(H)A
 MADE IN JAPAN
 (C)1998 KONAMI
@@ -135,16 +142,22 @@ MADE IN JAPAN
 |         CN1            |
 |------------------------|
 Notes:
-           CN1 - Connector joining to CPU board CN4
-         CN2/3 - RCA jacks for network cable
+      CN1      - Connector joining to CPU board CN4
+      CN2/3    - RCA jacks for network cable
       HYC2485S - Hybrid ceramic module for RS485
-       CY7C199 - 32k x8 SRAM
-        XC5204 - Xilinx XC5204 FPGA
-        XC5210 - Xilink XC5210 FPGA
-        N676H1 - PALCE16V8Q-15 stamped 'N676H1'
+      CY7C199  - 32k x8 SRAM
+      XC5204   - Xilinx XC5204 FPGA
+      XC5210   - Xilink XC5210 FPGA
+      N676H1   - PALCE16V8Q-15 stamped 'N676H1'
 
-Network PCB (Racing Jam 2 and Thrill Drive)
------------
+
+Type with Xicor X76F041 IC
+--------------------------
+
+This PCB is used on the following games:
+Racing Jam 2
+Thrill Drive (NWK-TR)
+
 GN676-PWB(H)B
 MADE IN JAPAN
 (C)1998 KONAMI
@@ -157,21 +170,31 @@ MADE IN JAPAN
 |CN2                     |
 |         CN1            |
 |------------------------|
-Notes:
-      This PCB is the same as revision A with one chip added.
-      2G - XICOR X76F041 Secure SerialFlash (SOIC8)
+This pcb is the same as the A version but with one added chip:
+      2G       - XICOR X76F041 Secure SerialFlash (SOIC8)
+        
+                 Note: This chip is also present on *some* Hornet games on the GN715 CPU board at location
+                 30C. The chip refreshes game and region specific serial data to the Timekeeper RAM if the
+                 region ID matches the timekeeper. Because Racing Jam 2 and Thrill Drive came in a conversion
+                 kit for Racing Jam, the two former games will first boot with a "backup data error" because
+                 of the timekeeper used for the incorrect game. Pressing the test switch results in merging 
+                 the old timekeeper data with the new data from the serialflash chip then it sets the
+                 timekeeper back to factory settings for the new kitted game installed. If the region ID in
+                 serialflash and timekeeper do not match, the game boots with a "hardware error" message.
+                 However, because the serialflash sets the data in the NVRAM there won't be any errors. 
+                 It is unclear what happens when the NVRAM battery dies whether the NVRAM data is 
+                 refreshed again. 
+                 Note this error is specific to the games that use this network board only. 
+                 
+                 On Hornet games that have this chip, they will work even with a dead
+                 NVRAM because the data is refreshed by the chip automatically at power-on.
 
-      Note: This chip is also present on *some* Hornet games on the GN715 CPU board at location
-      30C. The chip refreshes game and region specific serial data to the Timekeeper RAM if the
-      region ID matches the timekeeper. Because Racing Jam 2 and Thrill Drive came in a conversion
-      kit for Racing Jam, the two former games will first boot with a "backup data error" because
-      of the timekeeper used for the incorrect game. Pressing the test switch then sets the
-      timekeeper back to factory settings for the new kitted game installed. 
-      If the region ID in serialflash and timekeeper do not match, the game boots with a 
-      "hardware error" message. However, because the serialflash sets the data in the NVRAM there
-      won't be any errors. It is unclear what happens when the NVRAM battery dies whether the NVRAM
-      data is refreshed again. On Hornet games that have this chip, they will work even with a dead
-      NVRAM because the data is refreshed by the chip automatically at power-on.
+                 For other games that do not use this network board, the Timekeeper data will be 
+                 automatically refreshed by the serialflash chip on the mainboard, if one is present. 
+                 If one is not present the result will be error RTC BAD then a PCB reset.
+                 To fix that error you must replace the Timekeeper chip with a new working chip and 
+                 re-program the Timekeeper chip with the correct data for your specific game.
+                 
 
 Bottom Board (VIDEO PCB)
 GN676 PWB(B)B
