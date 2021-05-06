@@ -98,6 +98,8 @@ Notes:
       DRAM16X16 - Fujitsu 8118160A-60 16megx16 DRAM (SOJ42)
   0038323 E9825 - XICOR X76F041 Secure SerialFlash (SOIC8). I've seen a similar chip in the security cart of System573
                   The original chip markings are purposely obfuscated to prevent IC identification.
+                  The chip must be unlocked by the code to read it when the game boots so the password to unlock and 
+                  read the chip should be in the code.....
   M48T58Y-70PC1 - ST Timekeeper RAM
         RF5C400 - Ricoh RF5C400 PCM 32Ch, 44.1 kHz Stereo, 3D Effect Spatializer, clock input 16.9344MHz
          056800 - Konami Custom (QFP80)
