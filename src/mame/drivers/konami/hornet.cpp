@@ -2,7 +2,7 @@
 
 Konami 'Hornet' Hardware, Konami, 1997-2000
 Hardware info by Guru
-Last updated: 6th May 2021
+Last updated: 13th May 2021
 --------------------------
 
 Known games on this hardware include....
@@ -51,7 +51,7 @@ Game              KONAMI ID  CPU PCB    GFX Board(s)  notes
 Gradius 4         GX837      GN715(A)   GN715(B)
 NBA Play By Play  GX778      GN715(A)   GN715(B)
 Teraburst         GX715      GN715(A)   GN715(B)      GN680(E) I/O board
-Thrill Drive      GE713UF    GN715(A)   GN715(B)      GN676-PWB(H)A LAN PCB
+Thrill Drive      GE713UF    GN715(A)   GN715(B)      GN676-PWB(H)A LAN PCB or GN676-PWB(H)B (both tested working)
 Silent Scope      GQ830      GN715(A)   2x GN715(B)
 Silent Scope 2    GQ931      GN715(A)   2x GQ871(B)   GQ931(H) LAN PCB
 
@@ -62,13 +62,13 @@ PCB Layouts
 Top Board
 GN715 PWB(A)A
 |--------------------------------------------------------------|
-| SP485CS CN10       CN11        CN9          JP8 JP9 JP10 JP11|
+| SP485CS CN10       CN11   CN9     CN8       JP8 JP9 JP10 JP11|
 |CN19                                                    PAL1  |
 |CN21       JP13 PAL2             68EC000          EPROM.7S    |
 |   NE5532       PAL3                                      CN12|
 |           JP12  JP16    DRM1M4SJ8                        CN13|
 |   NE5532                            MASKROM.9P    MASKROM.9T |
-|     SM5877 JP15         RF5C400                              |
+|     SM5877 JP15         RF5C400                           CN7|
 |CN18                                 MASKROM.12P   MASKROM.12T|
 |     SM5877     16.9344MHz                                    |
 |CN14            SRAM256K             MASKROM.14P   MASKROM.14T|
@@ -87,10 +87,10 @@ GN715 PWB(A)A
 |                                                              |
 |CN3                                                           |
 | 0038323  PAL4                                       7.3728MHz|
-| E9825    058232           CN2                                |
-|                                                     50.000MHz|
-|    RESET_SW               CN5                    JP1  JP2    |
-|M48T58Y-70PC1  CN4                 CN6               64.000MHz|
+| E9825    058232                                              |
+|                          CN2                        50.000MHz|
+|    RESET_SW                                      JP1  JP2    |
+|M48T58Y-70PC1  CN4           CN5      CN6            64.000MHz|
 |--------------------------------------------------------------|
 Notes:
       DRM1M4SJ8 - Fujitsu 81C4256 256Kx4 DRAM (SOJ24)
@@ -99,8 +99,52 @@ Notes:
   0038323 E9825 - XICOR X76F041 Secure SerialFlash (SOIC8). I've seen a similar chip in the security cart of System573
                   The original chip markings are purposely obfuscated to prevent IC identification.
                   The chip must be unlocked by the code to read it when the game boots so the password to unlock and 
-                  read the chip should be in the code.....
+                  read the chip should be in the code.
+                  This chip will re-fresh the NVRAM data so that the game works even if the NVRAM battery is dead.
+                  This is not populated on some games and when the NVRAM battery dies a RTC ERROR will show on screen.
   M48T58Y-70PC1 - ST Timekeeper RAM
+                  The data in the NVRAM is checked at power-on and must match expected data in the main program.
+                  If the battery in the NVRAM is dead the PCB will show RTC BAD then reset.
+                  The format of the data for all games on hardware BEFORE KONAMI VIPER HARDWARE is known and it can be 
+                  re-created by hand by following the correct method. 
+                  Only the first 16 bytes are important. The remaining data is used for high scores and can be anything such as 00 or random data.
+                  When the game boots, if the data after byte 16 is bad it will be re-initialized by the program on first boot.
+                  
+                  Here is a working example of the first 16 bytes.....
+                  00000000h: 47 45 37 31 33 00 00 00 19 98 55 46 41 00 9E AB ; GE713....˜UFA.ž«
+
+                  The first 5 bytes come from the sticker on the PCB (47 45 37 31 33 = GE713).
+                  Then 3 bytes of 00 as a separator.
+                  Then 2 bytes as the year of the game as normal numbers (19 98).
+                  The next 3 bytes are merged with data from the ROM (55 46 41 = UFA). 
+                    - UF is shown on the sticker on the PCB (GE713 UF).
+                    - The A (or B, C or D) is the software version and comes from the main program. For example A01, B01, C01, D01 etc.
+                    - The A, B, C or D is written on the main program ROM sticker (for example 713AB01) but A, B, C or D is also acceptable because the ROM
+                      will overwrite the version automatically and show the true version on the first POST screen.
+                  The next byte is 00 as a separator.
+                  
+                  The last 2 bytes form the checksum. 
+                  Consider the following statement....
+                  ********************************* 
+                  The checksum is a 16-bit checksum in hexadecimal, computed by summing two consecutive bytes as a 16-bit integer
+                  for 8x 16-bit numbers total, where the final sum must add up to 0xFFFF. The last two bytes in the chunk are used to make the value 0xFFFF.
+                  *********************************  
+                  As per the example above, add the numbers like this....
+                  0x4745 + 0x3731 = 0x7e76
+                  0x7e76 + 0x3300 = 0xb176
+                  0xb176 + 0x0000 = 0xb176
+                  0xb176 + 0x1998 = 0xcb0e
+                  0xcb0e + 0x5546 = 0x12054 but it is 16-bit so the 1 is discarded and it becomes 0x2054
+                  0x2054 + 0x4100 = 0x6154
+                  0x6154 + x = 0xffff
+                  ------------------------------
+                  To calculate the missing number x: 0xffff - 0x6154 = 0x9eab
+                  ------------------------------
+                  Note Konami Viper Hardware uses similar NVRAM data but additional data is present after byte 16 that is required
+                  for the game to pass the NVRAM test. That has not been fully reversed yet so Viper NVRAMs can't be hand-crafted (yet).
+                  In this case, use the NVRAM data backed up in MAME. If a Viper game has a dead NVRAM and the MAME dump of that game 
+                  does not have an NVRAM included in the dump, the game can not be resurrected.
+                  
         RF5C400 - Ricoh RF5C400 PCM 32Ch, 44.1 kHz Stereo, 3D Effect Spatializer, clock input 16.9344MHz
          056800 - Konami Custom (QFP80)
          058232 - Konami Custom Ceramic Package (SIL14)
@@ -116,12 +160,12 @@ Notes:
            PAL2 - AMD PALCE16V8 (stamped 'N676A2', DIP20)
            PAL3 - AMD PALCE16V8 (stamped 'N676A3', DIP20)
            PAL4 - AMD PALCE16V8 (stamped 'N676A5', DIP20)
-            JP1 -       25M O O-O 32M
-            JP2 -       25M O O-O 32M
-            JP3 -        RW O O O RO
-            JP4 - PROG  32M O O-O 16M
-            JP5 - DATA  32M O-O O 16M
-            JP6 - BOOT   16 O-O O 32
+            JP1 -       25M O O-O 32M \
+            JP2 -       25M O O-O 32M  |
+            JP3 -        RW O O O RO   | Solder pads with jumpers not populated.
+            JP4 - PROG  32M O O-O 16M  |
+            JP5 - DATA  32M O-O O 16M /
+            JP6 - BOOT   16 O-O O 32     This is a 3-pin jumper block. Set this to '16' when EPROM at 27P is populated with 27C160.
             JP7 - SRC DOUT2 O O-O 0
             JP8 -   64M&32M O-O O 16M
             JP9 -       64M O O-O 32M&16M
@@ -132,14 +176,31 @@ Notes:
            JP14 - WDT       O O
            JP15 -      MONO O-O O SURR
            JP16 -      HIGH O O O MID (N/C LOW)
-    CN1 to  CN3 - Multi-pin Flat Cable Connector
+            CN1 - Multi-pin Flat Cable Connector joining to filter PCB for Analog Controls
+                  Controls for Thrill Drive are....
+                  1 - 
+                  2 - Brake 5k pot \
+                  3 -               |  Must not be pressed during power-on tests otherwise Brake/Gas in game will not work.
+                  4 - Gas 5k pot   /
+                  5 - 
+                  6 - Steering (50k pot tested working with Thrill Drive... 5k pot does not give enough steering travel)
+                  7 - GND
+                  8 - GND
+                  9 - +5V
+                 10 - +5V 
+            CN2 - Multi-pin Flat Cable Connector joining to filter PCB for LED display. 
+                  On some PCBs the LED is mounted on the main board at this location and the cable is not used.
+            CN3 - Multi-pin Flat Cable Connector. This is used for JAMMA controls via the filter PCB. This connector is also used on non-JAMMA games
+                  like Thrill Drive and Silent Scope for the start, start lamp and coin/service/test buttons.
+                  On Thrill Drive, gear high/low is joystick up/down
             CN4 - Multi-pin Connector for Network PCB
-            CN5 - Multi-pin Flat Cable Connector
-            CN6 - 96-Pin To Lower PCB, Joining Connector
-    CN7 to  CN8 - Not used
+            CN5 - Multi-pin Flat Cable Connector joining to filter PCB for 8-position DIP Switch mounted on the filter PCB. 
+                  On some PCBs the DIPSW is mounted on the main board at this location and the cable is not used.
+            CN6 - 96-Pin To Lower PCB, Inter-PCB Joining Connector
+    CN7 to  CN8 - Not populated / unused
     CN9 to CN11 - 6-Pin Power Connectors
-           CN19 - USB Connector
-           CN21 - 5-Pin Analog Controls Connector (Tied to USB Connector via the Filter Board)
+           CN19 - USB Connector. Seems to be unused?
+           CN21 - 5-Pin Connector (Tied to USB Connector via the Filter Board).
            CN18 - RCA Mono Audio OUT
     CN14 & CN16 - RCA Stereo Audio OUT
 
@@ -234,7 +295,7 @@ S/Scope 2    -       -       -       -      (no ROMs, not used)
 Teraburst uses a different variation of the I/O board used in Operation: Thunder Hurricane (see gticlub.cpp). Analog inputs are controlled by
 two CCD cameras, one from each gun. This specific variation uses a K056800 which normally acts as a sound interface controller. Perhaps this
 either sends analog inputs to the main pcb or isn't used at all. No network connection is involved in this setup as this board directly connects
-to the main pcb via joining connector.
+to the main pcb via joining connector. Note this PCB is required by Teraburst (not optional) and is tested on boot-up.
 
 GN680 PWB(E)403381B
 |------------------------------------------|
@@ -263,8 +324,15 @@ Notes:
   056800  - Konami Custom (QFP80)
 
 
-LAN PCB: GQ931 PWB(H)      (C) 1999 Konami
-------------------------------------------
+Lan PCB (used with Thrill Drive)
+-------
+GN676-PWB(H)A LAN PCB  \
+GN676-PWB(H)B LAN PCB  /  For details check src/mame/machine/konami_gn676_lan.cpp 
+
+
+LAN PCB (used with Silent Scope 2)
+-------
+GQ931 PWB(H) (C) 1999 Konami
 
 2 x LAN ports, LANC(1) & LANC(2)
 1 x 32.0000MHz Oscillator
@@ -283,11 +351,12 @@ The timekeeper region has to match the serial eeprom. The two mask roms serve as
 the data from those two roms.
 
 
-GFX PCB: GQ871 PWB(B)A (C) 1999 Konami
---------------------------------------
+GFX PCB (used with Silent Scope 2)
+----------------------------------
+GQ871 PWB(B)A (C) 1999 Konami
 
 There are no ROMs on the two GFX PCBs, all sockets are empty. They are located on the LAN PCB.
-Prior to the game starting there is a message saying downloading data.
+Prior to the game starting there is a message saying 'Please Wait, Downloading Data'
 
 Jumpers set on GFX PCB to main monitor:
 4A   set to TWN (twin GFX PCBs)
