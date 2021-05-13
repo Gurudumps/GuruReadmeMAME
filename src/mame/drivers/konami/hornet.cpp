@@ -2,8 +2,8 @@
 
 Konami 'Hornet' Hardware, Konami, 1997-2000
 Hardware info by Guru
-Last updated: 13th May 2021
---------------------------
+Last updated: 14th May 2021
+---------------------------
 
 Known games on this hardware include....
 
@@ -12,7 +12,7 @@ Game                             (C)      Year
 Gradius 4 : Fukkatsu             Konami   1998
 NBA Play by Play                 Konami   1998
 Teraburst                        Konami   1998
-Thrill Drive                     Konami   1999
+Thrill Drive                     Konami   1998 (note NWK-TR hardware version is later, in 1999)
 Silent Scope                     Konami   1999
 Silent Scope 2                   Konami   2000
 
@@ -93,7 +93,7 @@ GN715 PWB(A)A
 |M48T58Y-70PC1  CN4           CN5      CN6            64.000MHz|
 |--------------------------------------------------------------|
 Notes:
-      DRM1M4SJ8 - Fujitsu 81C4256 256Kx4 DRAM (SOJ24)
+      DRM1M4SJ8 - Fujitsu 81C4256 256kx4 DRAM (SOJ24)
        SRAM256K - Cypress CY7C199 32kx8 SRAM (SOJ28)
       DRAM16X16 - Fujitsu 8118160A-60 16megx16 DRAM (SOJ42)
   0038323 E9825 - XICOR X76F041 Secure SerialFlash (SOIC8). I've seen a similar chip in the security cart of System573
@@ -102,7 +102,7 @@ Notes:
                   read the chip should be in the code.
                   This chip will re-fresh the NVRAM data so that the game works even if the NVRAM battery is dead.
                   This is not populated on some games and when the NVRAM battery dies a RTC ERROR will show on screen.
-  M48T58Y-70PC1 - ST Timekeeper RAM
+  M48T58Y-70PC1 - ST Timekeeper M48T58Y-70PC1 Non-volatile RAM module.
                   The data in the NVRAM is checked at power-on and must match expected data in the main program.
                   If the battery in the NVRAM is dead the PCB will show RTC BAD then reset.
                   The format of the data for all games on hardware BEFORE KONAMI VIPER HARDWARE is known and it can be 
@@ -145,16 +145,16 @@ Notes:
                   In this case, use the NVRAM data backed up in MAME. If a Viper game has a dead NVRAM and the MAME dump of that game 
                   does not have an NVRAM included in the dump, the game can not be resurrected.
                   
-        RF5C400 - Ricoh RF5C400 PCM 32Ch, 44.1 kHz Stereo, 3D Effect Spatializer, clock input 16.9344MHz
+        RF5C400 - Ricoh RF5C400 PCM 32Ch, 44.1 kHz Stereo, 3D Effect Spatializer Audio Chip. Clock input 16.9344MHz
          056800 - Konami Custom (QFP80)
          058232 - Konami Custom Ceramic Package (SIL14)
        ADC12138 - National Semiconductor ADC12138 A/D Converter, 12-bit + Serial I/O With MUX (SOP28)
         MACH111 - AMD MACH111 CPLD (Stamped 'N676A1', PLCC44)
-        68EC000 - Motorola MC68EC000, running at 16.0MHz (64/4)
-       PPC403GA - IBM PowerPC 403GA CPU, clock input 32.0MHz (QFP160)
+        68EC000 - Motorola MC68EC000 CPU. Clock input 16.000MHz [64/4] (PLCC68)
+       PPC403GA - IBM PowerPC 403GA CPU. Clock input 32.000MHz (QFP160)
        SM5877AM - Nippon Precision Circuits 3rd Order 2-Channel D/A Converter (SOIC24)
           4AK16 - Hitachi 4AK16 Silicon N-Channel Power MOS FET Array (SIL10)
-       NE5532AN - Philips, Dual Low-Noise High-Speed Audio OP Amp (DIP8)
+       NE5532AN - Philips NE5532AN Dual Low-Noise High-Speed Audio OP Amp (DIP8)
         SP485CS - Sipex SP485CS Low Power Half Duplex RS485 Transceiver (DIP8)
            PAL1 - AMD PALCE16V8 (stamped 'N676A4', DIP20)
            PAL2 - AMD PALCE16V8 (stamped 'N676A2', DIP20)
