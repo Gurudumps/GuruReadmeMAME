@@ -105,46 +105,6 @@ Notes:
   M48T58Y-70PC1 - ST Timekeeper M48T58Y-70PC1 Non-volatile RAM module.
                   The data in the NVRAM is checked at power-on and must match expected data in the main program.
                   If the battery in the NVRAM is dead the PCB will show RTC BAD then reset.
-                  The format of the data for all games on hardware BEFORE KONAMI VIPER HARDWARE is known and it can be 
-                  re-created by hand by following the correct method. 
-                  Only the first 16 bytes are important. The remaining data is used for high scores and can be anything such as 00 or random data.
-                  When the game boots, if the data after byte 16 is bad it will be re-initialized by the program on first boot.
-                  
-                  Here is a working example of the first 16 bytes.....
-                  00000000h: 47 45 37 31 33 00 00 00 19 98 55 46 41 00 9E AB ; GE713....˜UFA.ž«
-
-                  The first 5 bytes come from the sticker on the PCB (47 45 37 31 33 = GE713).
-                  Then 3 bytes of 00 as a separator.
-                  Then 2 bytes as the year of the game as normal numbers (19 98).
-                  The next 3 bytes are merged with data from the ROM (55 46 41 = UFA). 
-                    - UF is shown on the sticker on the PCB (GE713 UF).
-                    - The A (or B, C or D) is the software version and comes from the main program. For example A01, B01, C01, D01 etc.
-                    - The A, B, C or D is written on the main program ROM sticker (for example 713AB01) but A, B, C or D is also acceptable because the ROM
-                      will overwrite the version automatically and show the true version on the first POST screen.
-                  The next byte is 00 as a separator.
-                  
-                  The last 2 bytes form the checksum. 
-                  Consider the following statement....
-                  ********************************* 
-                  The checksum is a 16-bit checksum in hexadecimal, computed by summing two consecutive bytes as a 16-bit integer
-                  for 8x 16-bit numbers total, where the final sum must add up to 0xFFFF. The last two bytes in the chunk are used to make the value 0xFFFF.
-                  *********************************  
-                  As per the example above, add the numbers like this....
-                  0x4745 + 0x3731 = 0x7e76
-                  0x7e76 + 0x3300 = 0xb176
-                  0xb176 + 0x0000 = 0xb176
-                  0xb176 + 0x1998 = 0xcb0e
-                  0xcb0e + 0x5546 = 0x12054 but it is 16-bit so the 1 is discarded and it becomes 0x2054
-                  0x2054 + 0x4100 = 0x6154
-                  0x6154 + x = 0xffff
-                  ------------------------------
-                  To calculate the missing number x: 0xffff - 0x6154 = 0x9eab
-                  ------------------------------
-                  Note Konami Viper Hardware uses similar NVRAM data but additional data is present after byte 16 that is required
-                  for the game to pass the NVRAM test. That has not been fully reversed yet so Viper NVRAMs can't be hand-crafted (yet).
-                  In this case, use the NVRAM data backed up in MAME. If a Viper game has a dead NVRAM and the MAME dump of that game 
-                  does not have an NVRAM included in the dump, the game can not be resurrected.
-                  
         RF5C400 - Ricoh RF5C400 PCM 32Ch, 44.1 kHz Stereo, 3D Effect Spatializer Audio Chip. Clock input 16.9344MHz
          056800 - Konami Custom (QFP80)
          058232 - Konami Custom Ceramic Package (SIL14)
