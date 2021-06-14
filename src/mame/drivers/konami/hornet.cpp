@@ -2,13 +2,14 @@
 
 Konami 'Hornet' Hardware, Konami, 1997-2000
 Hardware info by Guru
-Last updated: 14th May 2021
----------------------------
+Last updated: 14th June 2021
+----------------------------
 
 Known games on this hardware include....
 
 Game                             (C)      Year
 ----------------------------------------------
+Operation Thunder Hurricane      Konami   1997 (note there is another version on GTI Club hardware)
 Gradius 4 : Fukkatsu             Konami   1998
 NBA Play by Play                 Konami   1998
 Teraburst                        Konami   1998
@@ -46,14 +47,15 @@ Konami 0000033906 (PCI bridge)
 Specific game hardware configurations:
 -------------------------------------
 
-Game              KONAMI ID  CPU PCB    GFX Board(s)  notes
+Game                         KONAMI ID  CPU PCB    GFX Board(s)  notes
 ----------------------------------------------------------------------
-Gradius 4         GX837      GN715(A)   GN715(B)
-NBA Play By Play  GX778      GN715(A)   GN715(B)
-Teraburst         GX715      GN715(A)   GN715(B)      GN680(E) I/O board
-Thrill Drive      GE713UF    GN715(A)   GN715(B)      GN676-PWB(H)A LAN PCB or GN676-PWB(H)B (both tested working)
-Silent Scope      GQ830      GN715(A)   2x GN715(B)
-Silent Scope 2    GQ931      GN715(A)   2x GQ871(B)   GQ931(H) LAN PCB
+Operation Thunder Hurricane  GX830      GN715(A)   GN715(B)      GN680(E) I/O board
+Gradius 4                    GX837      GN715(A)   GN715(B)
+NBA Play By Play             GX778      GN715(A)   GN715(B)
+Teraburst                    GX715      GN715(A)   GN715(B)      GN680(E) I/O board
+Thrill Drive                 GE713UF    GN715(A)   GN715(B)      GN676-PWB(H)A LAN PCB or GN676-PWB(H)B (both tested working)
+Silent Scope                 GQ830      GN715(A)   2x GN715(B)
+Silent Scope 2               GQ931      GN715(A)   2x GQ871(B)   GQ931(H) LAN PCB
 
 
 PCB Layouts
@@ -172,15 +174,16 @@ Notes:
 
 ROM Usage
 ---------
-             |------------------------------- ROM Locations ---------------------------------------|
-Game         27P     25P     22P     16P     14P     12P     9P      16T     14T     12T  9T  7S
-----------------------------------------------------------------------------------------------------
-Gradius 4    837C01  -       -       837A09  837A10  -       778A12  837A04  837A05  -    -   837A08
-NBA P/Play   778A01  -       -       778A09  778A10  778A11  778A12  778A04  778A05  -    -   778A08
-Teraburst    -       715l02  715l03  715A09  715A10  -       778A12  715A04  715A05  -    -   715A08
-Thrill Drive 713AB01 -       -       713A09  713A10  -       -       713A04  713A05  -    -   713A08
-S/Scope      830B01  -       -       830A09  830A10  -       -       -       -       -    -   830A08
-S/Scope 2    931D01  -       -       931A09  931A10  931A11  -       931A04  -       -    -   931A08
+              |------------------------------- ROM Locations ---------------------------------------|
+Game          27P     25P     22P     16P     14P     12P     9P      16T     14T     12T  9T  7S
+-----------------------------------------------------------------------------------------------------
+Op. Th. Hurr. 830xxx  -       -       830A09  830A10  -       830A12  830A04  830A05  -    -   830A08
+Gradius 4     837C01  -       -       837A09  837A10  -       778A12  837A04  837A05  -    -   837A08
+NBA P/Play    778A01  -       -       778A09  778A10  778A11  778A12  778A04  778A05  -    -   778A08
+Teraburst     -       715l02  715l03  715A09  715A10  -       778A12  715A04  715A05  -    -   715A08
+Thrill Drive  713AB01 -       -       713A09  713A10  -       -       713A04  713A05  -    -   713A08
+S/Scope       830B01  -       -       830A09  830A10  -       -       -       -       -    -   830A08
+S/Scope 2     931D01  -       -       931A09  931A10  931A11  -       931A04  -       -    -   931A08
 
 
 Bottom Board
@@ -246,19 +249,22 @@ Notes:
 
 ROM Usage
 ---------
-             |------ ROM Locations -------|
-Game         24U     24V     32U     32V
--------------------------------------------
-Gradius 4    837A13  837A15  837A14  837A16
-NBA P/Play   778A13  778A15  778A14  778A16
-Teraburst    715A13  715A15  778A14  715A16
-Thrill Drive 713A13  -       713A14  -
-S/Scope      830A13  -       830A14  -
-S/Scope 2    -       -       -       -      (no ROMs, not used)
+               |------ ROM Locations -------|
+Game           24U     24V     32U     32V
+---------------------------------------------
+Op. Th. Hurr.  830A13  830A15  830A14  830A16
+Gradius 4      837A13  837A15  837A14  837A16
+NBA P/Play     778A13  778A15  778A14  778A16
+Teraburst      715A13  715A15  778A14  715A16
+Thrill Drive   713A13  -       713A14  -
+S/Scope        830A13  -       830A14  -
+S/Scope 2      -       -       -       -      (no ROMs, not used)
 
 
-Teraburst uses a different variation of the I/O board used in Operation: Thunder Hurricane (see gticlub.cpp). Analog inputs are controlled by
-two CCD cameras, one from each gun. This specific variation uses a K056800 which normally acts as a sound interface controller. Perhaps this
+Teraburst and Operation Thunder Hurricane use an extra I/O board that is tested on boot-up (not optional).
+Analog inputs are controlled by two CCD cameras, one from each gun. 
+Both games use the same I/O board but one chip is changed.
+For This specific variation uses a K056800 which normally acts as a sound interface controller. Perhaps this
 either sends analog inputs to the main pcb or isn't used at all. No network connection is involved in this setup as this board directly connects
 to the main pcb via joining connector. Note this PCB is required by Teraburst (not optional) and is tested on boot-up.
 
@@ -273,9 +279,9 @@ GN680 PWB(E)403381B
 |                                          |
 |           68EC000FN16  8464              |
 |    RESET_SW            8464              |
-|32MHz                           715A17.20K|
-|8464                 PAL(002962)          |
-|      056800         PAL(002961)          |
+|32MHz |-----|                   715A17.20K|
+|8464  | %   |        PAL(002962)          |
+|      |-----|        PAL(002961)          |
 |   PAL(056787A)      PAL(002960)          |
 |   CN1                                    |
 |------------------------------------------|
@@ -286,7 +292,9 @@ Notes:
   CN1     - Lower joining connector to main pcb
   NRPS11  - Idec NRPS11 PC Board circuit protector
   LM1881  - Video sync separator (DIP8)
-  056800  - Konami Custom (QFP80)
+  %       - Konami Custom (QFP80)
+            - For Operation Thunder Hurricane: K056230
+            - For Teraburst: K056800
 
 
 Lan PCB (used with Thrill Drive)
