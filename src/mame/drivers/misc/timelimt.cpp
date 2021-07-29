@@ -65,13 +65,13 @@ PCB Number: unknown
 |------|------------|-----------------|--------------|--------|
 |           CN1                             CN2         CN3   |
 |                                                             |
-|                                                    TL12.IC7 |
+| T6                                                 TL12.IC7 |
 |                                                             |
-|                                                    TL13.IC15|
+| T7                                                 TL13.IC15|
 |                                                             |
+| T8                                                          |
 |                                                             |
-|                                                             |
-|                                                             |
+| T9                                                          |
 |                                                             |
 |                                                             |
 |                                                    18.432MHz|
@@ -94,6 +94,7 @@ PCB Number: unknown
 |                                                             |
 |-------------------------------------------------------------|
 Notes:
+           T6-T9 - 2764 EPROMs (main program)
          TL12-13 - 2732 EPROMs (tiles)
          CN1/CN2 - Flat cables joining to lower PCB
              CN3 - 10 pin power connector
