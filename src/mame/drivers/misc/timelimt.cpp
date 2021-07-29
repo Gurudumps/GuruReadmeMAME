@@ -27,10 +27,6 @@ PCB Number: CHUO. L.H.CO.,LTD T.L102-GAME
 |                                         2114      TL5.IC34  |
 |                                                             |
 |                                                             |
-|                                                             |
-|                                                             |
-|                                                             |
-|                                                             |
 |  SW1                                        D780C-1(2)      |
 |                                                             |
 |                                      5MHz   AY3-8910        |
@@ -79,10 +75,6 @@ PCB Number: unknown
 |                                                             |
 |                                                             |
 |                                                    18.432MHz|
-|                                                             |
-|                                                             |
-|                                                             |
-|                                                             |
 |                                                             |
 |                                                             |
 |                                                             |
